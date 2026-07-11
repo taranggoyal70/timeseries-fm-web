@@ -3,6 +3,7 @@ import { ForecastExplorer } from "@/components/forecast-explorer";
 import { researchQuestions } from "@/data/findings";
 
 const REPO = "https://github.com/taranggoyal70/timeseries-fm";
+const PAPER = "https://arxiv.org/abs/2605.21504";
 
 export default function Home() {
   return (
@@ -50,7 +51,16 @@ export default function Home() {
           <a href="#findings" className="rounded-lg border border-line-strong px-5 py-2.5 text-sm font-semibold text-paper transition hover:border-accent">
             See the results
           </a>
+          <a href={PAPER} className="rounded-lg border border-line-strong px-5 py-2.5 text-sm font-semibold text-paper transition hover:border-accent">
+            Read the paper ↗
+          </a>
         </div>
+        <p className="mt-5 text-sm text-muted">
+          By{" "}
+          <a href={PAPER} className="text-muted-light underline decoration-line-strong underline-offset-2 hover:text-accent">
+            Sanjiv Das, Tarang Goyal &amp; Mohini Yadav
+          </a>
+        </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-3">
           <Stat big="−60%" label="Rates forecast error" sub="MV vs UV MAPE (4.97% vs 12.33%)" />
@@ -150,21 +160,22 @@ export default function Home() {
             <div>
               <p className="font-semibold text-paper">Chronos-2 Forecasting Lab</p>
               <p className="mt-1 max-w-md text-sm text-muted">
-                An interactive companion to the paper &ldquo;Multivariate Forecasting with
-                Foundation Models.&rdquo; Forecasts computed with the real{" "}
-                <code className="text-muted-light">amazon/chronos-2</code> model.
+                Interactive companion to &ldquo;Multivariate Financial Forecasting using
+                the Chronos Time Series Foundation Models.&rdquo; Forecasts computed with
+                the real <code className="text-muted-light">amazon/chronos-2</code> model.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm">
-              <a className="text-muted transition hover:text-accent" href={REPO}>Code &amp; paper</a>
-              <a className="text-muted transition hover:text-accent" href="https://arxiv.org/abs/2510.15821">Chronos-2 paper</a>
+              <a className="text-muted transition hover:text-accent" href={PAPER}>Read the paper</a>
+              <a className="text-muted transition hover:text-accent" href={REPO}>Code &amp; data</a>
+              <a className="text-muted transition hover:text-accent" href="https://arxiv.org/abs/2510.15821">Chronos-2 (Amazon)</a>
               <a className="text-muted transition hover:text-accent" href="https://huggingface.co/amazon/chronos-2">Model on HF</a>
-              <a className="text-muted transition hover:text-accent" href="https://fred.stlouisfed.org/">FRED data</a>
             </div>
           </div>
           <p className="mt-8 border-t border-line pt-6 text-xs text-muted">
-            Research based on the Chronos-2 study by S. Das. Forecasts are illustrative and
-            not investment advice. Built as an independent, open showcase.
+            Paper by Sanjiv Das, Tarang Goyal, and Mohini Yadav. Chronos-2 by Amazon
+            Science; rate data from FRED, equity data from Yahoo Finance. Forecasts are
+            illustrative and not investment advice.
           </p>
         </div>
       </footer>

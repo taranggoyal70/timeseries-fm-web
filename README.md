@@ -1,7 +1,8 @@
 # Chronos-2 Forecasting Lab
 
-An interactive companion site to the research paper **"Multivariate Forecasting
-with Foundation Models: Using Chronos-2 for Economic and Financial Forecasts."**
+An interactive companion site to the research paper **"Multivariate Financial
+Forecasting using the Chronos Time Series Foundation Models"** (Das, Goyal, Yadav),
+https://arxiv.org/abs/2605.21504.
 
 It lets you explore **real** [Chronos-2](https://huggingface.co/amazon/chronos-2)
 forecasts of Magnificent-7 equities and U.S. Treasury rates, comparing
@@ -50,8 +51,11 @@ pnpm install
 pnpm dev
 ```
 
-## Credits
+## Paper & credits
 
-Research based on the Chronos-2 study by S. Das. Chronos-2 by Amazon Science.
-Rate data from FRED; equity data from Yahoo Finance. Forecasts are illustrative
-and not investment advice. Built as an independent, open showcase.
+Paper: **Multivariate Financial Forecasting using the Chronos Time Series
+Foundation Models** by Sanjiv Das, Tarang Goyal, and Mohini Yadav —
+https://arxiv.org/abs/2605.21504
+
+Chronos-2 by Amazon Science. Rate data from FRED; equity data from Yahoo Finance.
+Forecasts are illustrative and not investment advice.
