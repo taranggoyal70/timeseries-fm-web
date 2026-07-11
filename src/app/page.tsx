@@ -73,14 +73,41 @@ export default function Home() {
       <section id="demo" className="mx-auto max-w-6xl px-6 py-14">
         <div className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">Explore</p>
-          <h2 className="mt-2 text-3xl font-semibold text-paper">Run a real forecast</h2>
+          <h2 className="mt-2 text-3xl font-semibold text-paper">Test it yourself</h2>
           <p className="mt-2 max-w-2xl text-muted">
-            Pick a series, a date, and a horizon. The chart shows the realized path
-            against Chronos-2&apos;s univariate and multivariate forecasts — computed
-            offline with the real model, not simulated.
+            Pick a panel, a series, and a horizon, then <strong className="text-paper">scrub
+            through a decade</strong> of monthly forecasts. Watch the multivariate and
+            univariate errors diverge over time, and see the win-rate across the whole panel
+            — all computed live from real Chronos-2 outputs.
           </p>
         </div>
         <ForecastExplorer />
+      </section>
+
+      {/* live seam */}
+      <section id="live" className="mx-auto max-w-6xl px-6 pb-4">
+        <div className="rounded-2xl border border-dashed border-line-strong bg-surface/40 p-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="flex items-center gap-2 text-sm font-semibold text-paper">
+                <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-accent">
+                  Coming soon
+                </span>
+                Bring your own series
+              </p>
+              <p className="mt-1 max-w-xl text-sm text-muted">
+                Paste any time series and get a live Chronos-2 forecast on demand. This runs
+                the model at request time on a GPU endpoint — being wired up next.
+              </p>
+            </div>
+            <button
+              disabled
+              className="cursor-not-allowed rounded-lg border border-line-strong px-4 py-2 text-sm font-semibold text-muted opacity-60"
+            >
+              Live forecast → soon
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* method */}

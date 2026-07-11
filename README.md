@@ -14,12 +14,17 @@ https://github.com/taranggoyal70/timeseries-fm
 
 ## What's real here
 
-The forecasts are **not simulated**. They were generated offline by running the
-actual `amazon/chronos-2` model over a 252-day rolling input window for a grid of
-(series × date × horizon) in both UV and MV modes, aligned against realized
-values, with MAPE/RMSE computed per forecast. The results are shipped as a static
-`public/forecasts.json` and served instantly — no model runs at request time
-(Chronos-2 needs GPU-class inference, so precomputation keeps the site free to host).
+The forecasts are **not simulated** and nothing is hardcoded. They were generated
+offline by running the actual `amazon/chronos-2` model over a 252-day rolling input
+window for a large grid — **~90 monthly dates (2018–2025) × three panels (equities,
+rates, and a combined 17-series "world") × horizons 21 & 63 × UV and MV** — aligned
+against realized values, with MAPE/RMSE computed per forecast. Results ship as static
+per-panel JSON (`public/fc/`, lazy-loaded, gzip-served) — no model runs at request
+time (Chronos-2 needs GPU-class inference, so precomputation keeps the site free to host).
+
+The sandbox lets you **scrub through a decade** of forecasts, watch UV vs MV error
+diverge over time, and see win-rate / mean improvement **computed live in the browser
+from the real grid** — not transcribed. No `localStorage`, cookies, or mock data.
 
 - **Univariate:** one series in, one forecast out.
 - **Multivariate:** the whole panel in (e.g. all 10 Treasury maturities), with

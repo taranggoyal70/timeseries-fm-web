@@ -1,7 +1,6 @@
 export type Metrics = { mape: number | null; rmse: number };
 
 export type Bundle = {
-  dataset: "stocks" | "rates";
   series: string;
   label: string;
   unit: "price" | "percent";
@@ -24,21 +23,26 @@ export type PanelMeta = {
   unit: string;
 };
 
-export type ForecastData = {
+export type Meta = {
   generatedAt: string;
   model: string;
   window: number;
   dates: string[];
   horizons: number[];
-  panels: { stocks: PanelMeta; rates: PanelMeta };
+  panels: Record<string, PanelMeta>;
+};
+
+export type PanelData = {
+  panel: string;
   bundles: Record<string, Bundle>;
 };
 
-export function bundleKey(
-  dataset: string,
-  series: string,
-  date: string,
-  horizon: number,
-): string {
-  return `${dataset}|${series}|${date}|${horizon}`;
+export type PanelKey = "equities" | "rates" | "world";
+
+export function key(series: string, date: string, horizon: number): string {
+  return `${series}|${date}|${horizon}`;
+}
+
+export function fmtValue(v: number, unit: "price" | "percent"): string {
+  return unit === "percent" ? `${v.toFixed(2)}%` : v.toFixed(1);
 }
