@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  /* Markets-terminal palette: cool cyan signal on deep navy. */
+  --ink: #070b11;
+  --surface: #0d131c;
+  --surface-raised: #131b26;
+  --line: rgba(160, 190, 220, 0.1);
+  --line-strong: rgba(160, 190, 220, 0.18);
+  --muted: #7d8ba0;
+  --muted-light: #a9b6c9;
+  --paper: #eaf1f9;
+  /* series colors */
+  --mv: #22d3ee;      /* multivariate — cyan */
+  --uv: #f5a742;      /* univariate — amber */
+  --actual: #eaf1f9;  /* realized — paper */
+  --accent: #22d3ee;
+  --accent-dim: #0e7490;
+  --up: #34d399;
+  --down: #f43f5e;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-muted: var(--muted);
+  --color-muted-light: var(--muted-light);
+  --color-paper: var(--paper);
+  --color-mv: var(--mv);
+  --color-uv: var(--uv);
+  --color-actual: var(--actual);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  background: var(--ink);
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 80% -10%, rgba(34, 211, 238, 0.07), transparent 60%),
+    var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(160, 190, 220, 0.16);
+  background-clip: padding-box;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
