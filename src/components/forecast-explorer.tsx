@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ErrorOverTime } from "@/components/error-over-time";
 import { ForecastChart } from "@/components/forecast-chart";
 import { errorOverTime, winStats } from "@/lib/analytics";
+import { bundleToCsv, downloadCsv } from "@/lib/export";
 import { key, type Bundle, type Meta, type PanelData, type PanelKey } from "@/lib/types";
 
 const PANELS: { k: PanelKey; l: string; hint: string }[] = [
@@ -47,6 +48,18 @@ export function ForecastExplorer() {
   const pmeta = meta?.panels[panel];
   const pdata = panels[panel];
   const dates = useMemo(() => meta?.dates ?? [], [meta]);
+
+  // Arrow keys scrub through forecast dates (ignored while typing in a control).
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
+      if (e.key === "ArrowLeft") setDateIdx((i) => Math.max(0, i - 1));
+      else if (e.key === "ArrowRight") setDateIdx((i) => Math.min(dates.length - 1, i + 1));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [dates.length]);
   const date = dates[dateIdx] ?? "";
 
   function changePanel(next: PanelKey) {
@@ -149,12 +162,22 @@ export function ForecastExplorer() {
         <LegendToggle color="var(--actual)" label="Actual" on solid onClick={() => {}} />
         <LegendToggle color="var(--mv)" label="Multivariate" on={show.mv} onClick={() => setShow((s) => ({ ...s, mv: !s.mv }))} />
         <LegendToggle color="var(--uv)" label="Univariate" on={show.uv} dashed onClick={() => setShow((s) => ({ ...s, uv: !s.uv }))} />
-        <button
-          onClick={() => setShow((s) => ({ ...s, band: !s.band }))}
-          className={`ml-auto rounded-md border px-2 py-1 transition ${show.band ? "border-mv/40 text-mv" : "border-line text-muted"}`}
-        >
-          80% interval
-        </button>
+        <div className="ml-auto flex items-center gap-2">
+          <button
+            onClick={() => bundle && downloadCsv(`${series}_${date}_${horizon}d_forecast.csv`, bundleToCsv(bundle))}
+            disabled={!bundle}
+            title="Download this forecast as CSV"
+            className="rounded-md border border-line px-2 py-1 text-muted transition hover:border-accent/40 hover:text-accent disabled:opacity-40"
+          >
+            ⇩ CSV
+          </button>
+          <button
+            onClick={() => setShow((s) => ({ ...s, band: !s.band }))}
+            className={`rounded-md border px-2 py-1 transition ${show.band ? "border-mv/40 text-mv" : "border-line text-muted"}`}
+          >
+            80% interval
+          </button>
+        </div>
       </div>
 
       {/* main chart */}
