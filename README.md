@@ -36,6 +36,13 @@ The **Findings** section reports the paper's rigorous aggregate result across th
 full rolling evaluation, where multivariate consistently wins (especially rates).
 The interactive demo shows individual forecasts, which vary case by case.
 
+## Using the explorer
+
+- **Scrub dates** with the slider, the ‹ / › buttons, or the **← / → arrow keys**.
+- Toggle the multivariate/univariate lines and the 80% interval from the legend.
+- **⇩ CSV** downloads the currently-shown forecast (date, actual, MV, UV, and the
+  80% band) so you can pull the real numbers into a notebook or spreadsheet.
+
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS v4
