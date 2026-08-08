@@ -48,6 +48,7 @@ export function ErrorOverTime({
   }, [points, activeDate]);
 
   return (
+    <div className="w-full overflow-x-auto">
     <svg
       viewBox={`0 0 ${W} ${H}`}
       className="w-full min-w-[560px] cursor-pointer"
@@ -95,5 +96,6 @@ export function ErrorOverTime({
         </text>
       ))}
     </svg>
+    </div>
   );
 }
